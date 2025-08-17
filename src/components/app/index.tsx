@@ -1,10 +1,13 @@
-import { CSSProperties, useState } from "react";
-import { ArticleParamsForm } from "../article-params-form";
+import { CSSProperties, useState } from 'react';
+import { ArticleParamsForm } from '../article-params-form';
 
-import { Article } from "../article";
-import { ArticleStateType, defaultArticleState } from "src/constants/articleProps";
+import { Article } from '../article';
+import {
+	ArticleStateType,
+	defaultArticleState,
+} from 'src/constants/articleProps';
 
-import styles from "./App.module.scss";
+import styles from './App.module.scss';
 
 export const App = () => {
 	const [styleState, setStyleState] = useState<ArticleStateType>(defaultArticleState);
@@ -29,10 +32,7 @@ export const App = () => {
 					'--bg-color': styleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm
-				onSubmit={handleFormSubmit}
-				onReset={handleReset}
-			/>
+			<ArticleParamsForm onSubmit={handleFormSubmit} onReset={handleReset} />
 			<Article />
 		</main>
 	);

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
@@ -67,12 +67,7 @@ export const ArticleParamsForm = ({
 			<aside
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form} onSubmit={handleSubmit}>
-					<Text
-						as={'h2'}
-						size={31}
-						weight={800}
-						uppercase
-					>
+					<Text as={'h2'} size={31} weight={800} uppercase>
 						Задайте параметры
 					</Text>
 					<Select
@@ -109,7 +104,9 @@ export const ArticleParamsForm = ({
 					/>
 					<Select
 						selected={formState.contentWidth}
-						onChange={(val) => setFormState({ ...formState, contentWidth: val })}
+						onChange={(val) =>
+							setFormState({ ...formState, contentWidth: val })
+						}
 						options={contentWidthArr}
 						title='ширина контента'
 					/>
