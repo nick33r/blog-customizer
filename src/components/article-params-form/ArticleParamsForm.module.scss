@@ -23,12 +23,10 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
-}
 
-.topContainer {
-	display: flex;
-	flex-direction: column;
-	gap: 50px;
+	& > :not(:last-child) {
+		margin-bottom: 50px;
+	}
 }
 
 .bottomContainer {
