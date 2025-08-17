@@ -16,7 +16,7 @@ import {
 	defaultArticleState,
 
 	// типы
-	ArticleStateType
+	ArticleStateType,
 } from './constants/articleProps';
 
 import './styles/index.scss';
@@ -29,8 +29,10 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [selected, setSelected] = useState<ArticleStateType>(defaultArticleState);
-	const [styleState, setStyleState] = useState<ArticleStateType>(defaultArticleState);
+	const [selected, setSelected] =
+		useState<ArticleStateType>(defaultArticleState);
+	const [styleState, setStyleState] =
+		useState<ArticleStateType>(defaultArticleState);
 
 	const handleFormSubmit = () => {
 		setStyleState({ ...selected });
@@ -58,37 +60,48 @@ const App = () => {
 				onReset={handleReset}
 				fields={[
 					<Select
+						key='fontFamily'
 						selected={selected.fontFamilyOption}
-						onChange={val => setSelected({ ...selected, fontFamilyOption: val })}
+						onChange={(val) =>
+							setSelected({ ...selected, fontFamilyOption: val })
+						}
 						options={fontFamilyOptions}
 						title='шрифт'
 					/>,
 					<RadioGroup
+						key='fontSize'
 						selected={selected.fontSizeOption}
 						name='radio'
-						onChange={val => setSelected({ ...selected, fontSizeOption: val })}
+						onChange={(val) =>
+							setSelected({ ...selected, fontSizeOption: val })
+						}
 						options={fontSizeOptions}
 						title='размер шрифта'
 					/>,
 					<Select
+						key='fontColor'
 						selected={selected.fontColor}
-						onChange={val => setSelected({ ...selected, fontColor: val })}
+						onChange={(val) => setSelected({ ...selected, fontColor: val })}
 						options={fontColors}
 						title='цвет шрифта'
 					/>,
-					<Separator />,
+					<Separator key='separator' />,
 					<Select
+						key='backgroundColor'
 						selected={selected.backgroundColor}
-						onChange={val => setSelected({ ...selected, backgroundColor: val })}
+						onChange={(val) =>
+							setSelected({ ...selected, backgroundColor: val })
+						}
 						options={backgroundColors}
 						title='цвет фона'
 					/>,
 					<Select
+						key='contentWidth'
 						selected={selected.contentWidth}
-						onChange={val => setSelected({ ...selected, contentWidth: val })}
+						onChange={(val) => setSelected({ ...selected, contentWidth: val })}
 						options={contentWidthArr}
 						title='ширина контента'
-					/>
+					/>,
 				]}
 			/>
 			<Article />

@@ -11,9 +11,14 @@ type FormProps = {
 	onSubmit: () => void;
 	onReset: () => void;
 	opened?: boolean;
-}
+};
 
-export const ArticleParamsForm = ({ fields, onSubmit, onReset, opened = false }: FormProps) => {
+export const ArticleParamsForm = ({
+	fields,
+	onSubmit,
+	onReset,
+	opened = false,
+}: FormProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(opened);
 	const rootRef = useRef<HTMLDivElement>(null);
 
@@ -35,13 +40,17 @@ export const ArticleParamsForm = ({ fields, onSubmit, onReset, opened = false }:
 	return (
 		<div ref={rootRef}>
 			<ArrowButton isOpen={isOpen} onClick={toggleOpen} />
-			<aside className={clsx(styles.container, { [styles.container_open]: isOpen })}>
+			<aside
+				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form} onSubmit={handleSubmit}>
-					<div className={styles.topContainer}>
-						{fields}
-					</div>
+					<div className={styles.topContainer}>{fields}</div>
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' htmlType='reset' type='clear' onClick={onReset} />
+						<Button
+							title='Сбросить'
+							htmlType='reset'
+							type='clear'
+							onClick={onReset}
+						/>
 						<Button title='Применить' htmlType='submit' type='apply' />
 					</div>
 				</form>
