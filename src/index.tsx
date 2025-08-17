@@ -13,7 +13,10 @@ import {
 	contentWidthArr,
 
 	// дефолтные значения инпутов
-	defaultArticleState
+	defaultArticleState,
+
+	// типы
+	ArticleStateType
 } from './constants/articleProps';
 
 import './styles/index.scss';
@@ -26,22 +29,16 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [fontFamily, setFontFamily] = useState(defaultArticleState.fontFamilyOption);
-	const [fontSize, setFontSize] = useState(defaultArticleState.fontSizeOption);
-	const [fontColor, setFontColor] = useState(defaultArticleState.fontColor);
-	const [backgroundColor, setBackgroundColor] = useState(defaultArticleState.backgroundColor);
-	const [contentWidth, setContentWidth] = useState(defaultArticleState.contentWidth);
+	const [selected, setSelected] = useState<ArticleStateType>(defaultArticleState);
+	const [styleState, setStyleState] = useState<ArticleStateType>(defaultArticleState);
 
 	const handleFormSubmit = () => {
-		console.log('submit');
+		setStyleState({ ...selected });
 	};
 
 	const handleReset = () => {
-		setFontFamily(defaultArticleState.fontFamilyOption);
-		setFontSize(defaultArticleState.fontSizeOption);
-		setFontColor(defaultArticleState.fontColor);
-		setBackgroundColor(defaultArticleState.backgroundColor);
-		setContentWidth(defaultArticleState.contentWidth);
+		setSelected({ ...defaultArticleState });
+		setStyleState({ ...defaultArticleState });
 	};
 
 	return (
@@ -49,47 +46,46 @@ const App = () => {
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': defaultArticleState.fontFamilyOption.value,
-					'--font-size': defaultArticleState.fontSizeOption.value,
-					'--font-color': defaultArticleState.fontColor.value,
-					'--container-width': defaultArticleState.contentWidth.value,
-					'--bg-color': defaultArticleState.backgroundColor.value,
+					'--font-family': styleState.fontFamilyOption.value,
+					'--font-size': styleState.fontSizeOption.value,
+					'--font-color': styleState.fontColor.value,
+					'--container-width': styleState.contentWidth.value,
+					'--bg-color': styleState.backgroundColor.value,
 				} as CSSProperties
 			}>
 			<ArticleParamsForm
-				opened={true}
 				onSubmit={handleFormSubmit}
 				onReset={handleReset}
 				fields={[
 					<Select
-						selected={fontFamily}
-						onChange={setFontFamily}
+						selected={selected.fontFamilyOption}
+						onChange={val => setSelected({ ...selected, fontFamilyOption: val })}
 						options={fontFamilyOptions}
 						title='шрифт'
 					/>,
 					<RadioGroup
-						selected={fontSize}
+						selected={selected.fontSizeOption}
 						name='radio'
-						onChange={setFontSize}
+						onChange={val => setSelected({ ...selected, fontSizeOption: val })}
 						options={fontSizeOptions}
 						title='размер шрифта'
 					/>,
 					<Select
-						selected={fontColor}
-						onChange={setFontColor}
+						selected={selected.fontColor}
+						onChange={val => setSelected({ ...selected, fontColor: val })}
 						options={fontColors}
 						title='цвет шрифта'
 					/>,
 					<Separator />,
 					<Select
-						selected={backgroundColor}
-						onChange={setBackgroundColor}
+						selected={selected.backgroundColor}
+						onChange={val => setSelected({ ...selected, backgroundColor: val })}
 						options={backgroundColors}
 						title='цвет фона'
 					/>,
 					<Select
-						selected={contentWidth}
-						onChange={setContentWidth}
+						selected={selected.contentWidth}
+						onChange={val => setSelected({ ...selected, contentWidth: val })}
 						options={contentWidthArr}
 						title='ширина контента'
 					/>
