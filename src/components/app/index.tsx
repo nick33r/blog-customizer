@@ -12,12 +12,8 @@ import styles from './App.module.scss';
 export const App = () => {
 	const [styleState, setStyleState] = useState<ArticleStateType>(defaultArticleState);
 
-	const handleFormSubmit = (formState: ArticleStateType) => {
-		setStyleState({ ...formState });
-	};
-
-	const handleReset = () => {
-		setStyleState({ ...defaultArticleState });
+	const handleStyleUpdate = (newState: ArticleStateType) => {
+		setStyleState({ ...newState });
 	};
 
 	return (
@@ -32,7 +28,7 @@ export const App = () => {
 					'--bg-color': styleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm onSubmit={handleFormSubmit} onReset={handleReset} />
+			<ArticleParamsForm updateStyle={handleStyleUpdate} />
 			<Article />
 		</main>
 	);

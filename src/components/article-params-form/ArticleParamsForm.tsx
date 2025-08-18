@@ -27,14 +27,12 @@ import styles from './ArticleParamsForm.module.scss';
 import clsx from 'clsx';
 
 type FormProps = {
-	onSubmit: (state: ArticleStateType) => void;
-	onReset: () => void;
+	updateStyle: (newState: ArticleStateType) => void;
 	opened?: boolean;
 };
 
 export const ArticleParamsForm = ({
-	onSubmit,
-	onReset,
+	updateStyle,
 	opened = false,
 }: FormProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(opened);
@@ -53,12 +51,12 @@ export const ArticleParamsForm = ({
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		onSubmit(formState);
+		updateStyle(formState);
 	};
 
 	const handleReset = () => {
 		setFormState({ ...defaultArticleState });
-		onReset();
+		updateStyle(defaultArticleState);
 	};
 
 	return (
