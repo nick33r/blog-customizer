@@ -51,12 +51,12 @@ export const ArticleParamsForm = ({
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		updateStyle(formState);
+		updateStyle({ ...formState });
 	};
 
 	const handleReset = () => {
 		setFormState({ ...defaultArticleState });
-		updateStyle(defaultArticleState);
+		updateStyle({ ...defaultArticleState });
 	};
 
 	return (

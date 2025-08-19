@@ -12,10 +12,6 @@ import styles from './App.module.scss';
 export const App = () => {
 	const [styleState, setStyleState] = useState<ArticleStateType>(defaultArticleState);
 
-	const handleStyleUpdate = (newState: ArticleStateType) => {
-		setStyleState({ ...newState });
-	};
-
 	return (
 		<main
 			className={styles.main}
@@ -28,7 +24,7 @@ export const App = () => {
 					'--bg-color': styleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm updateStyle={handleStyleUpdate} />
+			<ArticleParamsForm updateStyle={setStyleState} />
 			<Article />
 		</main>
 	);
